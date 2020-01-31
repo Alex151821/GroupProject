@@ -2,9 +2,10 @@ package Files;
 
 public class Main {
     public static void main(String[] args){
-        Integer [][] board = init();
         Files.Checkers checkers = new Files.Checkers();
-        checkers.printBoard(board);
+        Integer [][] board = init();
+        // I also made an init(), you can also do this:
+        Integer [][] board2 = checkers.initBoard(8);
     }
 
     public static Integer[][] init(){
