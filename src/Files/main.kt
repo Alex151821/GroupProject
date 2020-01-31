@@ -9,3 +9,9 @@ class Stuff {
         println(string)
     }
 }
+
+class Checkers {
+    fun printBoard(array: Array<Array<Int>>) {
+        println(array.joinToString() { y -> y.joinToString() { x -> while (x) { 0 -> "" } } } })
+    }
+}
