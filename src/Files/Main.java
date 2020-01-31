@@ -11,26 +11,42 @@ public class Main {
         // I also made an init(), you can also do this:
         //checkers.printBoard(board);
         checkers.printBoard();
-        stuff.print("Enter form x");
+        boolean playing = true;
+        int i = 0;
+        int color;
+        Serializable[] out;
+        while(playing) {
 
-        stuff.print("Enter form y");
-        stuff.print("Enter to x");
-        stuff.print("Enter to y");
+            stuff.print("Enter form x");
+            int fx = scan.nextInt();
+            scan.nextLine();
+            stuff.print("Enter form y");
+            int fy = scan.nextInt();
+            scan.nextLine();
+            stuff.print("Enter to x");
+            int tx = scan.nextInt();
+            scan.nextLine();
+            stuff.print("Enter to y");
+            int ty = scan.nextInt();
+            scan.nextLine();
+            if (i % 2 == 0){
+                color = 3;
+            } else{
+                color = 2;
+            }
+            out = checkers.movePiece(fx, fy, tx, ty, color);
+            if (!(String) out[1].equals("Success"))
+            checkers.setBoard((Integer[][]) out[0]);
+            //stuff.print((String) out[1]);
+            checkers.printBoard();
+            i++;
 
-        Serializable[] out = checkers.movePiece(0, 2, 1, 3, 2);
-        checkers.setBoard((Integer[][]) out[0]);
-        stuff.print((String) out[1]);
-        checkers.printBoard();
-        out = checkers.movePiece(1, 3, 2, 2, 2);
-        checkers.setBoard((Integer[][]) out[0]);
-        stuff.print((String) out[1]);
-        checkers.printBoard();
+        }
         scan.close();
-
     }
 
     /*
-    //unnecessary
+    //unnecessary function
     public static Integer[][] init(){
         Integer [][] board = new Integer[8][8];
         Integer [] board0 = {0, 1, 0, 1, 0, 1, 0, 1};
