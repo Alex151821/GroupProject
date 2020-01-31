@@ -13,14 +13,51 @@ class Stuff {
 }
 
 class Checkers {
-    public var board = Array(8) {y -> Array(8) {x -> if (y % 2 == 0) {if (x % 2 == 0) {if (y < 3) {2} else if (y > 4) {3} else {0}} else {1}} else {if (x % 2 == 0) {1} else {if (y < 3) {2} else if (y > 4) {3} else {0}}} } }
+    public var board = Array(8) { y ->
+        Array(8) { x ->
+            if (y % 2 == 0) {
+                if (x % 2 == 0) {
+                    if (y < 3) {
+                        2
+                    } else if (y > 4) {
+                        3
+                    } else {
+                        0
+                    }
+                } else {
+                    1
+                }
+            } else {
+                if (x % 2 == 0) {
+                    1
+                } else {
+                    if (y < 3) {
+                        2
+                    } else if (y > 4) {
+                        3
+                    } else {
+                        0
+                    }
+                }
+            }
+        }
+    }
 
     fun printBoard() {
-        println(board.joinToString(separator="\n") { y -> y.joinToString(separator="") { x -> when (x) { 1 -> "██"; 2 -> " ▓ "; 3 -> " ░ "; else -> "   " } } } + "\n")
+        println(board.joinToString(separator = "\n") { y ->
+            y.joinToString(separator = "") { x ->
+                when (x) {
+                    1 -> "██"
+                    2 -> " ▓ "
+                    3 -> " ░ "
+                    else -> "   "
+                }
+            }
+        } + "\n")
     }
 
     fun movePiece(fromx: Int, fromy: Int, tox: Int, toy: Int, color: Int): Array<Serializable> {
-        if (board[fromy][fromx] in arrayOf(color, color+2)) {
+        if (board[fromy][fromx] in arrayOf(color, color + 2)) {
             if (board[toy][tox] == 0) {
                 board[toy][tox] = board[fromy][fromx]
                 board[fromy][fromx] = 0
