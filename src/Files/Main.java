@@ -9,23 +9,22 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         //Integer [][] board = init();
         // I also made an init(), you can also do this:
-        Integer[][] board2 = checkers.initBoard(8);
         //checkers.printBoard(board);
-        checkers.printBoard(board2);
+        checkers.printBoard();
         stuff.print("Enter form x");
 
         stuff.print("Enter form y");
         stuff.print("Enter to x");
         stuff.print("Enter to y");
 
-        Serializable[] out = checkers.movePiece(board2, 0, 2, 1, 3, 2);
-        board2 = (Integer[][]) out[0];
+        Serializable[] out = checkers.movePiece(0, 2, 1, 3, 2);
+        checkers.setBoard((Integer[][]) out[0]);
         stuff.print((String) out[1]);
-        checkers.printBoard(board2);
-        out = checkers.movePiece(board2, 1, 3, 2, 2, 2);
-        board2 = (Integer[][]) out[0];
+        checkers.printBoard();
+        out = checkers.movePiece(1, 3, 2, 2, 2);
+        checkers.setBoard((Integer[][]) out[0]);
         stuff.print((String) out[1]);
-        checkers.printBoard(board2);
+        checkers.printBoard();
         scan.close();
 
     }

@@ -13,7 +13,7 @@ class Stuff {
 }
 
 class Checkers {
-    var board = Array(8) {y -> Array(8) {x -> if (y % 2 == 0) {if (x % 2 == 0) {if (y < 3) {2} else if (y > 4) {3} else {0}} else {1}} else {if (x % 2 == 0) {1} else {if (y < 3) {2} else if (y > 4) {3} else {0}}} } }
+    public var board = Array(8) {y -> Array(8) {x -> if (y % 2 == 0) {if (x % 2 == 0) {if (y < 3) {2} else if (y > 4) {3} else {0}} else {1}} else {if (x % 2 == 0) {1} else {if (y < 3) {2} else if (y > 4) {3} else {0}}} } }
 
     fun printBoard() {
         println(board.joinToString(separator="\n") { y -> y.joinToString(separator="") { x -> when (x) { 1 -> "██"; 2 -> " ▓ "; 3 -> " ░ "; else -> "   " } } } + "\n")
