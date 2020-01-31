@@ -1,5 +1,7 @@
 package Files
 
+import java.io.Serializable
+
 class Stuff {
     fun hi() {
         println("HEllo WOrld")
@@ -16,13 +18,26 @@ class Checkers {
     }
 
     fun printBoard(array: Array<Array<Int>>) {
-        println(array.joinToString(separator="\n") { y -> y.joinToString(separator="") { x -> when (x) { 0 -> "██"; 1 -> "▙"; 2 -> "██"; else -> "   " } } })
+        println(array.joinToString(separator="\n") { y -> y.joinToString(separator="") { x -> when (x) { 1 -> "██"; 2 -> "▙"; 3 -> "██"; else -> "   " } } })
     }
 
-    fun movePiece(board: Array<Array<Int>>, from: Array<Int>, to: Array<Int>): Array<Array<Int>> {
-        board[to[1]][to[0]] = board[from[1]][from[0]]
-        board[from[1]][from[0]] = 0
-        return board
+    fun movePiece(board: Array<Array<Int>>, from: Array<Int>, to: Array<Int>, color: Int): Array<Serializable> {
+        if (board[from[1]][from[0]] in arrayOf(color, color+2)) {
+            if (board[to[1]][to[0]] == 1) {
+                board[to[1]][to[0]] = board[from[1]][from[0]]
+                board[from[1]][from[0]] = 1
+            } else {
+                return arrayOf(board, "There's a piece in the way, or that place isn't a black tile")
+            }
+        } else {
+            return arrayOf(board, "That piece isn't the right color, or there isn't a piece there")
+        }
+        // if to-from == 0, impossible move
+        // if to-from == 1, moving up
+        // if to-from == -1, moving down
+        // those ones arent quite true but yknow
+
+        return arrayOf(board, "Success")
     }
 }
 
