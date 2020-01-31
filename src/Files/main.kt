@@ -14,7 +14,7 @@ class Stuff {
 
 class Checkers {
     fun initBoard(size: Int): Array<Array<Int>> {
-        return Array(size) {y -> Array(size) {x -> if (y % 2 == 0) {if (x % 2 == 0) {if (y < 3) {2} else if (y > 5) {3} else {0}} else {1}} else {if (x % 2 == 0) {1} else {if (y < 3) {2} else if (y > 5) {3} else {0}}} } }
+        return Array(size) {y -> Array(size) {x -> if (y % 2 == 0) {if (x % 2 == 0) {if (y < 3) {2} else if (y > 4) {3} else {0}} else {1}} else {if (x % 2 == 0) {1} else {if (y < 3) {2} else if (y > 4) {3} else {0}}} } }
     }
 
     fun printBoard(array: Array<Array<Int>>) {
@@ -35,7 +35,7 @@ class Checkers {
         // if to-from == 0, impossible move
         // if to-from == 1, moving up
         // if to-from == -1, moving down
-        // those ones arent quite true but yknow
+        // those ones aren't quite true but yknow
 
         return arrayOf(board, "Success")
     }
