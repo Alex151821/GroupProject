@@ -18,7 +18,7 @@ class Checkers {
     }
 
     fun printBoard(array: Array<Array<Int>>) {
-        println(array.joinToString(separator="\n") { y -> y.joinToString(separator="") { x -> when (x) { 1 -> "██"; 2 -> "▙"; 3 -> "██"; else -> "   " } } })
+        println(array.joinToString(separator="\n") { y -> y.joinToString(separator="") { x -> when (x) { 1 -> "██"; 2 -> "▙"; 3 -> "██"; else -> "   " } } } + "\n")
     }
 
     fun movePiece(board: Array<Array<Int>>, from: Array<Int>, to: Array<Int>, color: Int): Array<Serializable> {
