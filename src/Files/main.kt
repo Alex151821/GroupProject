@@ -21,11 +21,11 @@ class Checkers {
         println(array.joinToString(separator="\n") { y -> y.joinToString(separator="") { x -> when (x) { 1 -> "██"; 2 -> " ▓ "; 3 -> " ░ "; else -> "   " } } } + "\n")
     }
 
-    fun movePiece(board: Array<Array<Int>>, from: Array<Int>, to: Array<Int>, color: Int): Array<Serializable> {
-        if (board[from[1]][from[0]] in arrayOf(color, color+2)) {
-            if (board[to[1]][to[0]] == 1) {
-                board[to[1]][to[0]] = board[from[1]][from[0]]
-                board[from[1]][from[0]] = 1
+    fun movePiece(board: Array<Array<Int>>, fromx: Int, fromy: Int, tox: Int, toy: Int, color: Int): Array<Serializable> {
+        if (board[fromy][fromx] in arrayOf(color, color+2)) {
+            if (board[toy][tox] == 0) {
+                board[toy][tox] = board[fromy][fromx]
+                board[fromy][fromx] = 0
             } else {
                 return arrayOf(board, "There's a piece in the way, or that place isn't a black tile")
             }
