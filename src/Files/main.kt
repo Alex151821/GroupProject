@@ -14,7 +14,7 @@ class Stuff {
 
 class Checkers {
     fun initBoard(size: Int): Array<Array<Int>> {
-        return Array(size) {y -> Array(size) {x -> if (y % 2 == 0) {if (x % 2 == 0) {0} else {1}} else {if (x % 2 == 0) {1} else {0}} } }
+        return Array(size) {y -> Array(size) {x -> if (y % 2 == 0) {if (x % 2 == 0) {if (y < 3) {2} else if (y > 5) {3} else {0}} else {1}} else {if (x % 2 == 0) {1} else {if (y < 3) {2} else if (y > 5) {3} else {0}}} } }
     }
 
     fun printBoard(array: Array<Array<Int>>) {
