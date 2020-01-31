@@ -47,7 +47,8 @@ class Checkers {
         println(board.joinToString(separator = "\n") { y ->
             y.joinToString(separator = "") { x ->
                 when (x) {
-                    1 -> "██"
+                    0 -> "   "
+                    1 -> "███"
                     2 -> " ▓ "
                     3 -> " ░ "
                     else -> "   "
