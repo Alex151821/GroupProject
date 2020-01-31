@@ -6,6 +6,8 @@ public class Main {
         Integer [][] board = init();
         // I also made an init(), you can also do this:
         Integer [][] board2 = checkers.initBoard(8);
+        checkers.printBoard(board);
+        checkers.printBoard(board2);
     }
 
     public static Integer[][] init(){
