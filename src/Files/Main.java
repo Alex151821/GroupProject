@@ -34,6 +34,11 @@ public class Main {
                 }
                 stuff.print("Right or Left r/l");
                 String lr = scan.nextLine();
+                if (lr.toLowerCase().equals("l")){
+                    int ty = fy --;
+                } else if(lr.toLowerCase().equals("r")){
+                    int ty = fy ++;
+                }
 
                 /*
                 stuff.print("Enter to x");
