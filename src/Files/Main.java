@@ -15,35 +15,58 @@ public class Main {
         int i = 0;
         int color;
         Serializable[] out;
-        while(playing) {
+        String thing;
+        while (playing) {
+            do {
 
-            stuff.print("Enter form x");
-            int fx = scan.nextInt();
-            scan.nextLine();
-            stuff.print("Enter form y");
-            int fy = scan.nextInt();
-            scan.nextLine();
-            stuff.print("Enter to x");
-            int tx = scan.nextInt();
-            scan.nextLine();
-            stuff.print("Enter to y");
-            int ty = scan.nextInt();
-            scan.nextLine();
-            if (i % 2 == 0){
-                color = 3;
-            } else{
-                color = 2;
-            }
-            out = checkers.movePiece(fx, fy, tx, ty, color);
-            if (!(String) out[1].equals("Success"))
-            checkers.setBoard((Integer[][]) out[0]);
-            //stuff.print((String) out[1]);
+                stuff.print("Enter from x");
+                int fx = scan.nextInt();
+                scan.nextLine();
+                stuff.print("Enter from y");
+                int fy = scan.nextInt();
+                scan.nextLine();
+                stuff.print("Forward or backward? f/b");
+                String fb = scan.nextLine();
+                if (fb.toLowerCase().equals("f")){
+                    int tx = fx --;
+                } else if(!fb.toLowerCase().equals("b")){
+                    int tx = fx ++;
+                }
+                stuff.print("Right or Left r/l");
+                String lr = scan.nextLine();
+                if (lr.toLowerCase().equals("l")){
+                    int ty = fy --;
+                } else if(lr.toLowerCase().equals("r")){
+                    int ty = fy ++;
+                }
+
+                /*
+                stuff.print("Enter to x");
+                int tx = scan.nextInt();
+                scan.nextLine();
+                stuff.print("Enter to y");
+                int ty = scan.nextInt();
+                scan.nextLine();*/
+
+                if (i % 2 == 0) {
+                    color = 3;
+                } else {
+                    color = 2;
+                }
+                out = checkers.movePiece(fx, fy, tx, ty, color);
+                thing = (String) out[1];
+                checkers.setBoard((Integer[][]) out[0]);
+                if (!thing.equals("Success")){
+                    stuff.print((String) out[1]);
+                }
+                //stuff.print((String) out[1]);
+            } while (!thing.equals("Success"));
             checkers.printBoard();
             i++;
-
         }
         scan.close();
     }
+}
 
     /*
     //unnecessary function
@@ -61,4 +84,3 @@ public class Main {
         return board;
     }
 */
-}
