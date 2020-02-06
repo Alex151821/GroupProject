@@ -61,15 +61,21 @@ class Checkers {
 
     fun movePiece(fromx: Int, fromy: Int, tox: Int, toy: Int, color: Int): Array<Serializable> {
         if (board[fromy][fromx] in arrayOf(color, color + 2)) {
-            if (board[toy][tox] == 0) {
-                board[toy][tox] = board[fromy][fromx]
-                board[fromy][fromx] = 0
-            } else {
-                return arrayOf(board, "There's a piece in the way, or that place isn't a black tile")
+            try {
+                if (board[toy][tox] == 0) {
+                    board[toy][tox] = board[fromy][fromx]
+                    board[fromy][fromx] = 0
+                } else {
+                    return arrayOf(board, "There's a piece in the way, or that place isn't a black tile")
+                }
+            } catch (err: ArrayIndexOutOfBoundsException) {
+                return arrayOf(board, "You can't move the piece off the board!")
             }
         } else {
             return arrayOf(board, "That piece isn't the right color, or there isn't a piece there")
         }
+
+
         // if to-from == 0, impossible move
         // if to-from == 1, moving up
         // if to-from == -1, moving down
