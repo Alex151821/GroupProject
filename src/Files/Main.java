@@ -7,52 +7,49 @@ public class Main {
         Files.Checkers checkers = new Files.Checkers();
         Files.Stuff stuff = new Files.Stuff();
         Scanner scan = new Scanner(System.in);
-        //Integer [][] board = init();
-        // I also made an init(), you can also do this:
-        //checkers.printBoard(board);
         checkers.printBoard();
         boolean playing = true;
         int i = 0;
         int color;
         Serializable[] out;
         String thing;
+        int fx;
+        int fy;
+        int tx = 0;
+        int ty = 0;
         while (playing) {
             do {
-
+                //Enter coordinate of piece to move
                 stuff.print("Enter from x");
-                int fx = scan.nextInt();
+                fx = scan.nextInt();
                 scan.nextLine();
                 stuff.print("Enter from y");
-                int fy = scan.nextInt();
+                fy = scan.nextInt();
                 scan.nextLine();
+                //choose movement direction
                 stuff.print("Forward or backward? f/b");
                 String fb = scan.nextLine();
                 if (fb.toLowerCase().equals("f")){
-                    int tx = fx --;
-                } else if(!fb.toLowerCase().equals("b")){
-                    int tx = fx ++;
+                    ty = fy - 1;
+                } else if(fb.toLowerCase().equals("b")){
+                    ty = fy + 1;
                 }
                 stuff.print("Right or Left r/l");
                 String lr = scan.nextLine();
                 if (lr.toLowerCase().equals("l")){
-                    int ty = fy --;
+                    tx = fx - 1;
+                    stuff.print("hello");
                 } else if(lr.toLowerCase().equals("r")){
-                    int ty = fy ++;
-                }
-
-                /*
-                stuff.print("Enter to x");
-                int tx = scan.nextInt();
-                scan.nextLine();
-                stuff.print("Enter to y");
-                int ty = scan.nextInt();
-                scan.nextLine();*/
-
-                if (i % 2 == 0) {
+                    tx = fx + 1;
+                    stuff.print("hi");
+                } if (i % 2 == 0) {
                     color = 3;
                 } else {
                     color = 2;
                 }
+
+                stuff.print(fx + " " + fy+ " " + tx+ " " + ty);
+                //piece movement
                 out = checkers.movePiece(fx, fy, tx, ty, color);
                 thing = (String) out[1];
                 checkers.setBoard((Integer[][]) out[0]);
@@ -67,20 +64,3 @@ public class Main {
         scan.close();
     }
 }
-
-    /*
-    //unnecessary function
-    public static Integer[][] init(){
-        Integer [][] board = new Integer[8][8];
-        Integer [] board0 = {0, 1, 0, 1, 0, 1, 0, 1};
-        Integer [] board1 = {1, 0, 1, 0, 1, 0, 1, 0};
-        for (Integer i = 0; i < board.length; i++){
-            if (i % 2 == 0){
-                board[i] = board0;
-            } else{
-                board[i] = board1;
-            }
-        }
-        return board;
-    }
-*/
