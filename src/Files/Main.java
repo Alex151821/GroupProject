@@ -1,4 +1,5 @@
 package Files;
+
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -29,31 +30,29 @@ public class Main {
                 //choose movement direction
                 stuff.print("Forward or backward? f/b");
                 String fb = scan.nextLine();
-                if (fb.toLowerCase().equals("f")){
+                if (fb.toLowerCase().equals("f")) {
                     ty = fy - 1;
-                } else if(fb.toLowerCase().equals("b")){
+                } else if (fb.toLowerCase().equals("b")) {
                     ty = fy + 1;
                 }
                 stuff.print("Right or Left r/l");
                 String lr = scan.nextLine();
-                if (lr.toLowerCase().equals("l")){
+                if (lr.toLowerCase().equals("l")) {
                     tx = fx - 1;
                     stuff.print("hello");
-                } else if(lr.toLowerCase().equals("r")){
+                } else if (lr.toLowerCase().equals("r")) {
                     tx = fx + 1;
                     stuff.print("hi");
-                } if (i % 2 == 0) {
-                    color = 3;
-                } else {
-                    color = 2;
                 }
+                if (i % 2 == 0) color = 3;
+                else color = 2;
 
-                stuff.print(fx + " " + fy+ " " + tx+ " " + ty);
+                stuff.print(fx + " " + fy + " " + tx + " " + ty);
                 //piece movement
                 out = checkers.movePiece(fx, fy, tx, ty, color);
                 thing = (String) out[1];
                 checkers.setBoard((Integer[][]) out[0]);
-                if (!thing.equals("Success")){
+                if (!thing.equals("Success")) {
                     stuff.print((String) out[1]);
                 }
                 //stuff.print((String) out[1]);
