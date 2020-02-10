@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class Main {
+    static Files.Checkers checkers = new Files.Checkers();
+    static Files.Stuff stuff = new Files.Stuff();
+
     public static void main(String[] args) {
-        Files.Checkers checkers = new Files.Checkers();
-        Files.Stuff stuff = new Files.Stuff();
         Scanner scan = new Scanner(System.in);
         checkers.printBoard();
         boolean playing = true;
@@ -59,7 +60,45 @@ public class Main {
             } while (!thing.equals("Success"));
             checkers.printBoard();
             i++;
+            switch (winCheck(checkers.getBoard())) {
+                case 0:
+                    stuff.print("Black Wins!!!");
+                    break;
+                case 1:
+                    stuff.print("White Wins!!!");
+                    break;
+                default:
+                    break;
+            }
         }
         scan.close();
+    }
+
+    public static int winCheck(Integer[][] board) {
+        int[] count = {0, 0};
+        for (Integer[] i : board) {
+            for (Integer j : i) {
+                switch (j) {
+                    case 3:
+                    case 5:
+                        count[0]++;
+                        break;
+                    case 2:
+                    case 4:
+                        count[1]++;
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        }//end for loop
+        if (count[1] == 0) {
+            return 0;
+        } else if (count[0] == 0) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 }
