@@ -60,26 +60,72 @@ class Checkers {
     }
 
     fun movePiece(fromx: Int, fromy: Int, tox: Int, toy: Int, color: Int): Array<Serializable> {
+        var oppColor = if (color == 2) {
+            3
+        } else {
+            2
+        }
         if (board[fromy][fromx] in arrayOf(color, color + 2)) {
             try {
                 if (board[toy][tox] == 0) {
                     board[toy][tox] = board[fromy][fromx]
                     board[fromy][fromx] = 0
                 } else {
-                    return arrayOf(board, "There's a piece in the way, or that place isn't a black tile")
+                    if (board[toy][tox] in arrayOf(color, color + 2)) {
+                        return arrayOf(board, "One of your own pieces is in the way!")
+                    } else if (board[toy][tox] in arrayOf(oppColor, oppColor + 2)) {
+                        var up = toy - fromy < 0
+                        var left = tox - fromx < 0
+                        try {
+                            if (up && left) {
+                                if (board[toy - 1][tox - 1] in arrayOf(oppColor, oppColor + 2)) {
+                                    return arrayOf(board, "An enemy piece is in the way!")
+                                } else {
+                                    board[toy - 1][tox - 1] = board[fromy][fromx]
+                                    board[toy][tox] = 0
+                                    board[fromy][fromx] = 0
+                                }
+                            } else if (up && !left) {
+                                if (board[toy - 1][tox + 1] in arrayOf(oppColor, oppColor + 2)) {
+                                    return arrayOf(board, "An enemy piece is in the way!")
+                                } else {
+                                    board[toy - 1][tox + 1] = board[fromy][fromx]
+                                    board[toy][tox] = 0
+                                    board[fromy][fromx] = 0
+                                }
+                            } else if (!up && left) {
+                                if (board[toy + 1][tox - 1] in arrayOf(oppColor, oppColor + 2)) {
+                                    return arrayOf(board, "An enemy piece is in the way!")
+                                } else {
+                                    board[toy + 1][tox - 1] = board[fromy][fromx]
+                                    board[toy][tox] = 0
+                                    board[fromy][fromx] = 0
+                                }
+                            } else if (!up && !left) {
+                                if (board[toy + 1][tox + 1] in arrayOf(oppColor, oppColor + 2)) {
+                                    return arrayOf(board, "An enemy piece is in the way!")
+                                } else {
+                                    board[toy + 1][tox + 1] = board[fromy][fromx]
+                                    board[toy][tox] = 0
+                                    board[fromy][fromx] = 0
+                                }
+                            }
+                        } catch (err: ArrayIndexOutOfBoundsException) {
+                            return arrayOf(board, "An enemy piece is in the way!")
+                        }
+                        return arrayOf(board, "An enemy piece is in the way!")
+                    }
+                    return arrayOf(board, "That place isn't a black tile!")
                 }
             } catch (err: ArrayIndexOutOfBoundsException) {
                 return arrayOf(board, "You can't move the piece off the board!")
             }
         } else {
-            return arrayOf(board, "That piece isn't the right color, or there isn't a piece there")
+            if (board[fromy][fromx] in arrayOf(oppColor, oppColor + 2)) {
+                return arrayOf(board, "That piece isn't the right color!")
+            }
+            return arrayOf(board, "There isn't a piece there!")
         }
-
-
-        // if to-from == 0, impossible move
-        // if to-from == 1, moving up
-        // if to-from == -1, moving down
-        // those ones aren't quite true but yknow
 
         return arrayOf(board, "Success")
     }
