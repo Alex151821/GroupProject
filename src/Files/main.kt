@@ -113,9 +113,7 @@ class Checkers {
                         } catch (err: ArrayIndexOutOfBoundsException) {
                             return arrayOf(board, "An enemy piece is in the way!")
                         }
-                        return arrayOf(board, "An enemy piece is in the way!")
                     }
-                    return arrayOf(board, "That place isn't a black tile!")
                 }
             } catch (err: ArrayIndexOutOfBoundsException) {
                 return arrayOf(board, "You can't move the piece off the board!")

@@ -57,15 +57,18 @@ public class Main {
                     stuff.print((String) out[1]);
                 }
                 //stuff.print((String) out[1]);
+                checkers.printBoard();
             } while (!thing.equals("Success"));
             checkers.printBoard();
             i++;
             switch (winCheck(checkers.getBoard())) {
                 case 0:
                     stuff.print("Black Wins!!!");
+                    playing = false;
                     break;
                 case 1:
                     stuff.print("White Wins!!!");
+                    playing = false;
                     break;
                 default:
                     break;
