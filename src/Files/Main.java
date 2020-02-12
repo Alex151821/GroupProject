@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class Main {
+
     static Files.Checkers checkers = new Files.Checkers();
     static Files.Stuff stuff = new Files.Stuff();
 
@@ -57,8 +58,10 @@ public class Main {
                     stuff.print((String) out[1]);
                 }
                 //stuff.print((String) out[1]);
+                checkers.setBoard(kingCheck(checkers.getBoard()));
+                checkers.kingCheck();
                 checkers.printBoard();
-            } while (!thing.equals("Success"));
+            } while (!thing.equals("Success")); // end play loop
             checkers.printBoard();
             i++;
             switch (winCheck(checkers.getBoard())) {
@@ -103,5 +106,20 @@ public class Main {
         } else {
             return 2;
         }
+    }
+
+    public static Integer[][] kingCheck(Integer[][] board) {
+
+        for (int i = 0; i < board[0].length; i++) {
+            if (board[0][i] == 3) {
+                board[0][i] = 5;
+            }
+        }
+        for (int i = 0; i < board[7].length; i++) {
+            if (board[7][i] == 2) {
+                board[7][i] = 4;
+            }
+        }
+        return board;
     }
 }

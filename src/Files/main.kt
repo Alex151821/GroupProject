@@ -134,15 +134,16 @@ class Checkers {
     }
 
     fun kingCheck(): Array<Array<Int>> {
-        for (i in 0..board[0].size) {
+        for (i in 0..board[0].size - 1) {
             if (board[0][i] == 3) {
                 board[0][i] == 5
             }
         }
-        for ( i in 0..board[7].size) {
+        for (i in 0..board[7].size - 1) {
             if (board[7][i] == 2) {
                 board[7][i] == 4
             }
         }
+        return board;
     }
 }
