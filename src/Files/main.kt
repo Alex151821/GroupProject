@@ -67,15 +67,20 @@ class Checkers {
         }
         if (board[fromy][fromx] in arrayOf(color, color + 2)) {
             try {
+                var up = toy - fromy < 0
+                var left = tox - fromx < 0
+                var piece = if (board[fromy][fromx] > 3) {"king"} else {"normal"}
+
                 if (board[toy][tox] == 0) {
+                    if (piece == "normal" && ((color in arrayOf(2, 4) && up) || (color in arrayOf(3, 5) && !up))) {
+                        return arrayOf(board, "That piece isn't a king, and cannot be moved backwards!")
+                    }
                     board[toy][tox] = board[fromy][fromx]
                     board[fromy][fromx] = 0
                 } else {
                     if (board[toy][tox] in arrayOf(color, color + 2)) {
                         return arrayOf(board, "One of your own pieces is in the way!")
                     } else if (board[toy][tox] in arrayOf(oppColor, oppColor + 2)) {
-                        var up = toy - fromy < 0
-                        var left = tox - fromx < 0
                         try {
                             if (up && left) {
                                 if (board[toy - 1][tox - 1] in arrayOf(oppColor, oppColor + 2)) {
