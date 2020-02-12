@@ -31,20 +31,30 @@ public class Main {
                 scan.nextLine();
                 //choose movement direction
                 stuff.print("Forward or backward? f/b");
-                String fb = scan.nextLine();
-                if (fb.toLowerCase().equals("f")) {
-                    ty = fy - 1;
-                } else if (fb.toLowerCase().equals("b")) {
-                    ty = fy + 1;
+                while (true) {
+                    String fb = scan.nextLine();
+                    if (fb.toLowerCase().equals("f")) {
+                        ty = fy - 1;
+                        break;
+                    } else if (fb.toLowerCase().equals("b")) {
+                        ty = fy + 1;
+                        break;
+                    } else {
+                        stuff.print("Invalid input");
+                    }
                 }
                 stuff.print("Right or Left r/l");
-                String lr = scan.nextLine();
-                if (lr.toLowerCase().equals("l")) {
-                    tx = fx - 1;
-                    stuff.print("hello");
-                } else if (lr.toLowerCase().equals("r")) {
-                    tx = fx + 1;
-                    stuff.print("hi");
+                while (true) {
+                    String lr = scan.nextLine();
+                    if (lr.toLowerCase().equals("l")) {
+                        tx = fx - 1;
+                        break;
+                    } else if (lr.toLowerCase().equals("r")) {
+                        tx = fx + 1;
+                        break;
+                    } else {
+                        stuff.print("Invalid input");
+                    }
                 }
                 if (i % 2 == 0) color = 3;
                 else color = 2;
